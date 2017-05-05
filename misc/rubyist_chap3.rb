@@ -229,3 +229,41 @@ puts Temperature.c2f(100)
 
 ## practically speaking, having a Temperature class with class
 ## methods to perform the conversions is adequate and is an acceptable design
+
+
+## A note on method notation
+## Some example
+## Ticket#price ---> instance method price in the class Ticket
+## Ticket.most_expensive ---> class method
+## Ticket::most_expensive ---> class method
+
+
+## 3.7.1 Basic use of constants
+
+## Every constant begins with a capital letters
+## constant def. on top of a class definition
+
+class Ticket
+  VENUES = ["Convention Center", "Fairgrounds", "Town Hall"] ##---constant
+
+  def initialize(venue, date)
+    if VENUES.include?(venue)
+      @venue = venue
+    else
+      raise ArgumentError, "Unknown venue #{venue}"
+    end
+    @date = date
+  end
+end
+
+## will work
+test = Ticket.new("Convention Center", 1/11)
+## not work Unknown venue
+test1 = Ticket.new("Center", 1/11)
+
+## print all constant
+puts Ticket::VENUES   ## using double colon(::)
+
+## Adding to VENUES array
+venues = Ticket::VENUES
+venues << "High School Gym"
